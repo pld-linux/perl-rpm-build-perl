@@ -8,12 +8,12 @@
 Summary:	Calculate dependencies for Perl sources
 Summary(pl.UTF-8):	Znajdź zależności dla dla źródeł perlowych
 Name:		perl-rpm-build-perl
-Version:	0.71
+Version:	0.74
 Release:	1
 License:	Artistic/GPL
 Group:		Development/Languages/Perl
 Source0:        http://search.cpan.org/CPAN/authors/id/A/AT/ATOURBIN/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	ad4801208db22d7d3707473f26aa186c
+# Source0-md5:	12fb46dfaee6cccd509bea1917a04e64
 URL:		http://search.cpan.org/dist/rpm-build-perl/
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
