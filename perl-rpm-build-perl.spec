@@ -6,13 +6,13 @@
 %define	pdir	rpm
 %define	pnam	build-perl
 Summary:	Calculate dependencies for Perl sources
-Summary(pl.UTF-8):	Znajdź zależności dla dla źródeł perlowych
+Summary(pl.UTF-8):	Znajdź zależności dla źródeł perlowych
 Name:		perl-rpm-build-perl
 Version:	0.80
 Release:	1
 License:	Artistic/GPL
 Group:		Development/Languages/Perl
-Source0:        http://search.cpan.org/CPAN/authors/id/A/AT/ATOURBIN/%{pdir}-%{pnam}-%{version}.tar.gz
+Source0:	http://search.cpan.org/CPAN/authors/id/A/AT/ATOURBIN/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	0ce2716ea447362fa2879684b5daafe7
 URL:		http://search.cpan.org/dist/rpm-build-perl/
 BuildRequires:	perl-devel >= 1:5.8.0
