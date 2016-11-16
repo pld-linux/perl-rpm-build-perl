@@ -41,7 +41,9 @@ Moduł ten znajduje zależności dla źródeł perlowych.
 %build
 %{__perl} Makefile.PL \
 	INSTALLDIRS=vendor
-%{__make}
+%{__make} \
+	CC="%{__cc}" \
+	OPTIMIZE="%{rpmcflags}"
 
 %{?with_tests:%{__make} test}
 
