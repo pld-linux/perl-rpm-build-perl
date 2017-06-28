@@ -9,7 +9,7 @@ Summary:	Calculate dependencies for Perl sources
 Summary(pl.UTF-8):	Znajdowanie zależności dla źródeł perlowych
 Name:		perl-rpm-build-perl
 Version:	0.82
-Release:	3
+Release:	4
 License:	GPL v2+
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-authors/id/A/AT/ATOURBIN/%{pdir}-%{pnam}-%{version}.tar.gz
@@ -18,6 +18,7 @@ Source0:	http://www.cpan.org/modules/by-authors/id/A/AT/ATOURBIN/%{pdir}-%{pnam}
 Patch0:		%{name}-perl5.22.patch
 # https://rt.cpan.org/Ticket/Attachment/1213691/640915/0001-Fix-non-deterministic-failures-on-newer-perls.patch
 Patch1:		%{name}-non-deterministic-failures.patch
+Patch2:		rpm-build-perl-0.82-Port-to-OpSIBLING-like-macros-required-since-Perl-5..patch
 URL:		http://search.cpan.org/dist/rpm-build-perl/
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -37,6 +38,7 @@ Moduł ten znajduje zależności dla źródeł perlowych.
 %setup -q -n %{pdir}-%{pnam}-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__perl} Makefile.PL \
