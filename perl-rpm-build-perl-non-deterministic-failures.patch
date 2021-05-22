@@ -21,7 +21,7 @@ diff --git a/lib/B/Walker.pm b/lib/B/Walker.pm
 index b71f204..f626043 100644
 --- a/lib/B/Walker.pm
 +++ b/lib/B/Walker.pm
-@@ -119,7 +119,7 @@ sub walk_gv ($) {
+@@ -126,7 +126,7 @@ sub walk_gv ($) {
  sub walk_stash ($$);
  sub walk_stash ($$) { # similar to B::walksymtable
  	my ($symref, $prefix) = @_;
@@ -30,6 +30,3 @@ index b71f204..f626043 100644
  		no strict 'refs';
  		my $fullname = "*main::". $prefix . $sym;
  		if ($sym =~ /::\z/) {
--- 
-1.7.10.4
-

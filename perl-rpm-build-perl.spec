@@ -21,6 +21,7 @@ Patch2:		rpm-build-perl-0.82-Port-to-OpSIBLING-like-macros-required-since-Perl-5
 URL:		http://search.cpan.org/dist/rpm-build-perl/
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
+BuildRequires:	rpmbuild(macros) >= 1.745
 %if %{with tests}
 BuildRequires:	perl-Encode
 BuildRequires:	perl-Test-Simple
