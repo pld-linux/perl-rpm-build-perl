@@ -8,7 +8,7 @@ Summary:	Calculate dependencies for Perl sources
 Summary(pl.UTF-8):	Znajdowanie zależności dla źródeł perlowych
 Name:		perl-rpm-build-perl
 Version:	0.82
-Release:	9
+Release:	10
 License:	GPL v2+
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-authors/id/A/AT/ATOURBIN/%{pdir}-%{pnam}-%{version}.tar.gz
