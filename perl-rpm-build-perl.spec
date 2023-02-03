@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	tests		# do not perform "make test"
+%bcond_without	tests	# unit tests
 #
 %define	pdir	rpm
 %define	pnam	build-perl
@@ -11,14 +11,17 @@ Version:	0.82
 Release:	10
 License:	GPL v2+
 Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-authors/id/A/AT/ATOURBIN/%{pdir}-%{pnam}-%{version}.tar.gz
+Source0:	https://www.cpan.org/modules/by-authors/id/A/AT/ATOURBIN/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	1cfb4f6a0842d04ef39fd945abacce91
 # https://rt.cpan.org/Ticket/Attachment/1513584/807128/rpm-build-perl-0.82-Adjust-to-perl-5.22.patch
 Patch0:		%{name}-perl5.22.patch
 # https://rt.cpan.org/Ticket/Attachment/1213691/640915/0001-Fix-non-deterministic-failures-on-newer-perls.patch
 Patch1:		%{name}-non-deterministic-failures.patch
+# CPAN RT#117350
 Patch2:		rpm-build-perl-0.82-Port-to-OpSIBLING-like-macros-required-since-Perl-5..patch
-URL:		http://search.cpan.org/dist/rpm-build-perl/
+# CPAN RT#142772
+Patch3:		rpm-build-perl-Adapt-tests-to-Perl-5.35.12.patch
+URL:		https://metacpan.org/dist/rpm-build-perl
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRequires:	rpmbuild(macros) >= 1.745
@@ -39,6 +42,7 @@ Moduł ten znajduje zależności dla źródeł perlowych.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__perl} Makefile.PL \

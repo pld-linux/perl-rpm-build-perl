@@ -1,0 +1,39 @@
+From 4e4b1a4723c4b89d94c0d78098108332ccd04a35 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Petr=20P=C3=ADsa=C5=99?= <ppisar@redhat.com>
+Date: Mon, 16 May 2022 14:37:33 +0200
+Subject: [PATCH] Adapt tests to Perl 5.35.12
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Perl 5.35.12 has POSIX module in version 2.03. That version number was
+not expected by t/03-perlprov.t test:
+
+    #   Failed test 'POSIX.pm dependencies'
+    #   at t/03-perlprov.t line 32.
+    #                   'perl(POSIX.pm) = 2.030'
+    #     doesn't match '(?^:^perl\(POSIX\.pm\)\ \=\ 1\.(\d|$))'
+
+This patch adapts the test to accept any version number.
+
+CPAN RT#142772
+
+Signed-off-by: Petr Písař <ppisar@redhat.com>
+---
+ t/03-perlprov.t | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/t/03-perlprov.t b/t/03-perlprov.t
+index b3472d1..ccde76a 100644
+--- a/t/03-perlprov.t
++++ b/t/03-perlprov.t
+@@ -50,5 +50,5 @@ Provides "Data/Dumper.pm"	=> "perl(Data/Dumper.pm) = 2.";
+ Provides "IO/File.pm"		=> "perl(IO/File.pm) = 1.";
+ Provides "File/Glob.pm"		=> "perl(File/Glob.pm) = ";
+ Provides "Socket.pm"		=> "perl(Socket.pm) = ";
+-Provides "POSIX.pm"		=> "perl(POSIX.pm) = 1.";
++Provides "POSIX.pm"		=> "perl(POSIX.pm) = ";
+ 
+-- 
+2.35.3
+
