@@ -1,0 +1,50 @@
+From e1342706be0f3e4926082f93bd25f8fa5358bc0b Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Petr=20P=C3=ADsa=C5=99?= <ppisar@redhat.com>
+Date: Tue, 1 Aug 2023 15:32:22 +0200
+Subject: [PATCH] Adjust to Perl 5.38.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Perl 5.38.0 simplified how annonymous subroutines are compiled
+<https://github.com/Perl/perl5/pull/20290>. As a result,
+t/01-B-PerlReq.t started to fail on hiding module loads from Try::Tiny
+try {} blocks:
+
+    $ prove -b t/01-B-PerlReq.t
+    t/01-B-PerlReq.t .. 9/?
+    #   Failed test at t/01-B-PerlReq.t line 93.
+    #          got: 'perl(Try/Tiny.pm)
+    # perl(Bar.pm)'
+    #     expected: 'perl(Try/Tiny.pm)
+    # perl(Foo.pm)
+    # perl(Bar.pm)'
+
+This patch adjusted to the simplified optree.
+
+CPAN RT #148982
+
+Signed-off-by: Petr Písař <ppisar@redhat.com>
+---
+ lib/B/PerlReq.pm | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/lib/B/PerlReq.pm b/lib/B/PerlReq.pm
+index 2e2a2ba..dbd837a 100644
+--- a/lib/B/PerlReq.pm
++++ b/lib/B/PerlReq.pm
+@@ -273,7 +273,10 @@ my %TryCV;
+ sub grok_try {
+ 	return unless $INC{"Try/Tiny.pm"};
+ 	my (undef, $op) = @_;
+-	if ($op->name eq "srefgen") {
++	if ($op->name eq "anoncode") {
++		# Since v5.38.0, PerlGH #20290
++	} elsif ($op->name eq "srefgen") {
++		# Before v5.38.0
+ 		$op = $op->first->first;
+ 	} elsif ($op->name eq "refgen") {
+ 		$op = $op->first->first->sibling;
+-- 
+2.41.0
+
